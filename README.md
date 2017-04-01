@@ -36,5 +36,11 @@ We have users into Memory to authenticate
     2) si decimos que al logearse una persona como User este no podra acceder a la pagina /admin
     3) si decimos que una persona pone mal sus credenciales se usa el param.error y con ello podemos usar cada error y mandar un mensaje personalizado
     4)Tomar en cuenta que podemos poner @NotNull(message="") en los entity
+    
+    
+    
+    References
+    http://javasampleapproach.com/spring-framework/spring-mvc/spring-security-config-security-mvc-web-spring-boot
+    
 
   
