@@ -24,10 +24,17 @@ We have users into Memory to authenticate
  
   Crearemos Class que extienda de "WebSecurityConfigurerAdapter" y asi configuraremos nuestra pegticiones
   y pondremos nuestros usuarios en memoria
-            auth
+        auth
                    .inMemoryAuthentication()
                     .withUser("user").password("user").roles("USER")
-           .and()
+       .and()
                    .withUser("admin").password("admin").roles("ADMIN");
+
+#   Pequeño Resumen
+
+    1) tenemos creado cada pagina para cada usuario de nuestra aplicacion
+    2) si decimos que al logearse una persona como User este no podra acceder a la pagina /admin
+    3) si decimos que una persona pone mal sus credenciales se usa el param.error y con ello podemos usar cada error y mandar un mensaje personalizado
+    4)Tomar en cuenta que podemos poner @NotNull(message="") en los entity
 
   
