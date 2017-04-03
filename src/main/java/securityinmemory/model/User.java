@@ -1,5 +1,8 @@
 package securityinmemory.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,8 +13,10 @@ import java.util.List;
 /**
  * Created by Alexis on 01/04/2017.
  */
-
+@Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="users")
 public class User implements UserDetails {
 
@@ -23,12 +28,14 @@ public class User implements UserDetails {
     private Boolean enabled;
 
     // Make sense to Eager fetch user's authorities
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "role_user", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "rlId"))
+    @ManyToMany(mappedBy = "rlUsers")
     private List<Role> roles;
 
-
+    public User(String username, String password, Boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -12,6 +12,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
+
+    /*
+    Vamos a verificar los permisos que tenemos
+    dentro de esta aplicacion tanto para admin como para user
+    */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
