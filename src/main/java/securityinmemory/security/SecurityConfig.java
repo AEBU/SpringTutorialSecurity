@@ -1,10 +1,15 @@
 package securityinmemory.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import securityinmemory.userdetails.CCUserDetailsService;
 
 /**
  * Created by Alexis on 01/04/2017.
@@ -12,7 +17,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
-
+    @Autowired
+    private CCUserDetailsService userDetailsService;
     /*
     Vamos a verificar los permisos que tenemos
     dentro de esta aplicacion tanto para admin como para user
@@ -37,11 +43,29 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     //Como podemos observar vamos a usar usuarios que esten ya en memoria
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
+       /*
+            auth
                 .inMemoryAuthentication()
                 .withUser("user").password("user").roles("USER")
                 .and()
                 .withUser("admin").password("admin").roles("ADMIN");
+        */
+
+            auth.userDetailsService(userDetailsService);
+
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(encoder());
+        return authProvider;
+    }
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder(11);
     }
 
 }

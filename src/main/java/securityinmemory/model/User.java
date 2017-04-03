@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="users")
-public class User implements UserDetails {
+public class User  {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -28,7 +28,12 @@ public class User implements UserDetails {
     private Boolean enabled;
 
     // Make sense to Eager fetch user's authorities
-    @ManyToMany(mappedBy = "rlUsers")
+
+
+    //    @ManyToMany(mappedBy = "rlUsers")
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "userId"),inverseJoinColumns = @JoinColumn(name = "rlId"))
     private List<Role> roles;
 
     public User(String username, String password, Boolean enabled) {
@@ -37,38 +42,12 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public User(String username, String password, Boolean enabled, List<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
     }
 
-    @Override
-    public String getPassword() {
-        return null;
-    }
 
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 }

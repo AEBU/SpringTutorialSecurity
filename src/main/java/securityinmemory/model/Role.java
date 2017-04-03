@@ -25,14 +25,17 @@ public class Role {
 
     private String rlName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "role_user", joinColumns =@JoinColumn(name = "role_id", referencedColumnName = "rlId")
-            ,inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"))
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "role_user", joinColumns =@JoinColumn(name = "role_id", referencedColumnName = "rlId")
+//            ,inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"))
+//    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
     private List<User> rlUsers;
 
     public Role(String rlName) {
         this.rlName = rlName;
     }
+
 
     @Override
     public String toString() {

@@ -34,49 +34,78 @@ public class DatabaseHelperAutocomplete implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
+        List<Role> rolesAdmin=new ArrayList<>();
+        List<Role> rolesUser=new ArrayList<>();
+
+
         //        ***************Creamos los Roles***************
 
         Role admin=new Role("ROLE_ADMIN");
         Role user=new Role("ROLE_USER");
         roleRepository.save(admin);
         roleRepository.save(user);
-        List<Role> rolesAdmin=new ArrayList<>();
-        List<Role> rolesUser=new ArrayList<>();
+
+
+
         rolesAdmin.add(admin);
         rolesAdmin.add(user);
-        System.out.println("Roles Admin"+rolesAdmin);
-        rolesUser.add(user);
-        System.out.println("Roles User"+rolesUser);
-
-
 
 
         //        ***************Creamos los Usuarios***************
-        User elizabeth=new User("elizabeth","gatos",true);
-        User alexis=new User("alexis","papi",true);
-        User isolina=new User("isolina","mamita",true);
-        User gabirara=new User("gabisita","carneiuu",true);
+//        User elizabeth=new User("elizabeth","gatos",true);
+//        User alexis=new User("alexis","papi",true);
+//        User isolina=new User("isolina","mamita",true);
+//        User gabirara=new User("gabisita","carneiuu",true);
+//
+//        elizabeth.getRoles().add(admin);
+//        alexis.getRoles().add(user);
+//        isolina.getRoles().add(user);
+//        gabirara.getRoles().add(user);
+//        gabirara.getRoles().add(admin);
+
+        User alexis= new User();
+        User gabirara=new User();
+
+        alexis.setPassword("papi");
+        alexis.setUsername("alexito");
+        alexis.setEnabled(true);
+//        alexis.setRoles(rolesAdmin);
+//        alexis.getRoles().add(admin);
+
+
+        gabirara.setPassword("carneiuu");
+        gabirara.setUsername("gabisita");
+        gabirara.setEnabled(true);
+//        gabirara.getRoles().add(new Role("ROLE_USER"));
+//        gabirara.setRoles(rolesUser);
+
+        userRepository.save(alexis);
+        userRepository.save(gabirara);
+
+
+
+
 
         //        ***************les damos los roles**************
-        elizabeth.setRoles(rolesUser);
-        alexis.setRoles(rolesAdmin);
-        isolina.setRoles(rolesAdmin);
-        gabirara.setRoles(rolesAdmin);
+//        elizabeth.setRoles(rolesUser);
+//        alexis.setRoles(rolesAdmin);
+//        isolina.setRoles(rolesAdmin);
+//        gabirara.setRoles(rolesAdmin);
 
-        userRepository.save(elizabeth);
-        userRepository.save(alexis);
-
-        List<User> users=new ArrayList<>();
-        users.add(elizabeth);
-        users.add(alexis);
-        users.add(isolina);
-        users.add(gabirara);
+//        userRepository.save(elizabeth);
+//        userRepository.save(alexis);
+//
+//        List<User> users=new ArrayList<>();
+//        users.add(elizabeth);
+//        users.add(alexis);
+//        users.add(isolina);
+//        users.add(gabirara);
 ///
-        userRepository.save(users);
-
-
-        System.out.println("User" +
-                "/n"+users);
+//        userRepository.save(users);
+//
+//
+//        System.out.println("User" +
+//                "/n"+users);
     }
 
 }
