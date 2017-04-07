@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cantones</title>
+</head>
+<body>
+<h2>View Post</h2>
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Id del Canton: </label>
+        <div class="col-md-10">
+            <p class="form-control-static" th:text="${cant.cntId}">title</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Nombre</label>
+        <div class="col-md-10">
+            <p class="form-control-static" th:text="${cant.cntNombre}">slug</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Descripcion</label>
+        <div class="col-md-10">
+            <p class="form-control-static" th:text="${cant.cntDescripcion}">keywords</p>
+        </div>
+    </div>
+
+</form>
+
+<a th:href="@{/cantones}">Back To Cantones List</a>
+<br/><br/><br/>
+</body>
+</html>

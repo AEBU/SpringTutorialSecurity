@@ -42,8 +42,8 @@ public class DatabaseHelperAutocomplete implements CommandLineRunner {
 
         Role admin=new Role("ROLE_ADMIN");
         Role user=new Role("ROLE_USER");
-        roleRepository.save(admin);
-        roleRepository.save(user);
+//        roleRepository.save(admin);
+//        roleRepository.save(user);
 
 
 
@@ -79,8 +79,8 @@ public class DatabaseHelperAutocomplete implements CommandLineRunner {
 //        gabirara.getRoles().add(new Role("ROLE_USER"));
 //        gabirara.setRoles(rolesUser);
 
-        userRepository.save(alexis);
-        userRepository.save(gabirara);
+//         userRepository.save(alexis);
+//          userRepository.save(gabirara);
 
 
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cantones</title>
+</head>
+<body>
+
+    <ul id="cantons" >
+        <li th:each="canton:${cantones}">
+            <th:block th:text="${canton.cntId}">Canton Id</th:block>
+            <th:block th:text="${canton.cntNombre}">Canton Nombre</th:block>
+            <th:block th:text="${canton.cntDescripcion}">Canton Descripcion</th:block>
+        </li>
+    </ul>
+    <!--<tr th:each="cant: ${cantones}">-->
+    <!--<td th:text="${cant.cntNombre}"></td>-->
+    <!--</tr>-->
+    <!--<br/>-->
+    <!--<tr th:each="cant : ${cantones}">-->
+        <!--<td th:text="${cant.cntId}">Canton Id</td>-->
+        <!--<td th:text="${cant.cntNombre}">Canton Nombre</td>-->
+        <!--<td th:text="${cant.cntDescripcion}">Canton Descripcion</td>-->
+
+    <!--</tr>-->
+
+    <!--<td th:text="${#calendars.format(post.postedOn,'M/dd/yyyy hh:mm:ss a')}">posted on</td>-->
+
+    <h2>Cantones</h2>
+
+    <div th:if="${message}" role="alert">
+        <p th:text="${message}">success message</p>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre Canton</th>
+            <th>Descripcion</th>
+            <th>Author</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cant : ${cantones}">
+            <td th:text="${cant.cntId}">Id</td>
+            <td th:text="${cant.cntNombre}">Nombre</td>
+            <td th:text="${cant.cntDescripcion}">Descripcion</td>
+            <td><a href="#" th:href="@{/cantones/} + ${cant.cntId}">View</a></td>
+            <td><a href="#" th:href="@{/cantones/edit/} + ${cant.cntId}">Edit</a></td>
+            <td><a href="#" th:href="@{/cantones/delete/} + ${cant.cntId}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="#" th:href="@{/cantones/create}">Add New Post</a>
+    <br/><br/>
+    <p th:if="${cantones.size() == 0}">
+    <div class="alert alert-warning" role="alert">No Posts Found.</div>
+    </p>
+
+
+</body>
+
+</html>

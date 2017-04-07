@@ -20,7 +20,7 @@ import java.util.List;
 @SessionScope
 public class MyUserPrincipal implements UserDetails {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private User user;
 

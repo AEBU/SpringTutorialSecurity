@@ -26,5 +26,6 @@ public class CCUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(email);
         }
         return new MyUserPrincipal(user);
+
     }
 }
